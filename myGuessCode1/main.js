@@ -22,7 +22,7 @@ function chooseRandomNum() {
 
 function play() {
     console.log(history);
-    let userValue = userInput.value;
+    let userValue = parseInt(userInput.value);
     console.log(`\t생성된 번호:\t\t ${randomNum} 
     유저가 입력한 번호:\t ${userValue} 
     남은 횟수:\t\t\t ${gameLife}
@@ -70,3 +70,5 @@ function reset() {
     playButton.disabled = false;
     history = [];
 }
+
+function historyCheck() {}
