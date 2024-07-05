@@ -2,8 +2,8 @@
 let taskInput = document.getElementById('task-input');
 let addButton = document.getElementById('add-button');
 let taskList = [];
-
 addButton.addEventListener('click', addTask);
+
 // ### Step 7-3: 엔터키를 입력해도 아이템이 등록되도록
 // 기존에는 + 버튼에 클릭 이벤트를 발생시켰지만 키 입력을 받는 곳이 HTML 에 task-input 박스이다.
 // task-input  박스의 ID를 taskInput 변수에 담아 두었기 때문에 taskInput. 변수에 이벤트 리스너를 실행시킨다.
@@ -15,6 +15,8 @@ taskInput.addEventListener('keydown', function (event) {
     }
 });
 
+// ### Step 7-5: 텍스트 박스에 포커싱이 되는 경우 내용 삭제
+// 어디에? addTask 한 후에, addTask 함수가 실행되고 마지막에
 function addTask() {
     //    console.log(taskInput.value);
     // let taskContent = taskInput.value;
@@ -25,6 +27,7 @@ function addTask() {
     // 그리고 taskList 에 push 로 넣어줄 때 객체를 넣어준다.
 
     let task = {
+        id: randomIdGenerate(),
         taskContent: taskInput.value,
         isComplete: false,
     };
@@ -34,6 +37,8 @@ function addTask() {
     taskList.push(task);
     console.log(taskList);
     render();
+    taskInput.value = '';
+    // taskContent = '';
 }
 
 // ### Step 5: 할일들은 한줄씩 여러 줄이기 때문에 array 로 만들어 준다.
@@ -56,6 +61,13 @@ function addTask() {
 
 */
 
+// ### Step 9: 화면에 보이도록 render에 작업을 해 준다.
+// render 아래 if 문을 하나 추가
+// 만약에 if, taskList[i]번째 있는 isComplete == true라면
+// 밑에 있던 task List div 를 복사
+// 이후에 taskList[i]번째.taskContent 글씨에 클래스 이름을 붙이고 작업
+// task-done 클래스를 CSS에서 수정
+
 function render() {
     let resultHTML = '';
     // Step 6: for 문을 사용해서 resultHTML 을 그려 넣을 수 있다. 뭘로? 입력받은 값으로
@@ -72,7 +84,7 @@ function render() {
         resultHTML += `<div class="task">
                         <div>${taskList[i].taskContent}</div>
                         <div>
-                            <button>Check</button>
+                            <button onclick="toogleComplete('${taskList[i].id}')">Check</button>
                             <button>Delete</button>
                         </div>
                     </div>`;
@@ -91,3 +103,58 @@ function render() {
 //  taskInput.value 는 값만 넣어주고 있음, task가 끝났는지 아닌지에 대한 정보가 없음
 // 즉 아이템의 이름, 상태에 대한 추가적인 정보를 만들어 주어야 한다.
 // 따라서 객체를 쓰는 방법을 사용할 수 있다.
+
+// Step 8: 체크 버튼
+// 1. 체크 버튼을 클릭하는 순간, isComplete  를 false에서 true로 변경
+// 2. isComplete 가 true인 경우 끝난 것으로 간 주하고 밑줄
+// false 이면 안끝난 것으로 간주하고 그대로
+// 문제는 체크 버튼이 html 이 아니라 main.js 에 있다. 이런 경우
+// document.getElementById('click', ...) 가 아니라 다른 방법
+// 즉 onClick 이벤트를 줄 수 있다.
+// <button onclick="toogleComplete()">Check</button>
+
+// ### Step 8-3: ID값을 전달해 주었으니 id 값을 받아올 수 있다.
+// function toogleComplete() 에서 toogleComplete(id) 로
+function toogleComplete(id) {
+    console.log('ID: ', id, 'check 되었음');
+
+    // ### Step 8-4: ID값을 넘겨 주었으면 아이디를 베이스로 해서 isComplete 를 true 로 변경할 수 있어야 한다.
+    // 우선은 아이디 값을 베이스로 찾는 법부터 for 문을 써서 찾을 수 있다.
+    // taskList[i] 배열에 있는 아이디가 매개변수로 받은 아이디와 같다면?
+    // taskList[i].번째 isComplete 의 값을 true로 바꿔라
+    // 작업을 완료하고 나면 바로 break로 for 문을 종료한다.
+    // true인 경우라면 어떻하지?
+    //
+    for (let i = 0; i < taskList.length; i++) {
+        if (taskList[i].id == id) {
+            console.log('같은 값 있음', id);
+            taskList[i].isComplete = true;
+            break;
+        }
+    }
+    console.log(taskList);
+}
+// ### Step 8-1: onclick이 되면 객체를 찾아서 액션을 취해야 한다.
+// 객체를 어떻게 찾지? 파라미터로 받아야 하나?
+// 다시 말해 선택을 뭘 했는지 어떻게 알지?
+// 정보에도 ID가 필요함
+// 따라서 addTask 시에 (객체를 만들 시에) ID를 부여할 수 있다.
+// 구글에서 generate random id javascript 입력
+// github a unique ID/name generator for JavaScript
+/* 
+var ID = function () {
+  return '_' + Math.random().toString(36).substr(2, 9);
+};
+*/
+
+// 결과적으로 randomIdGenerate() 함수를 만들고
+// addTask 함수 안에 task 객체를 만들 때 id: randomIdGenerate(), 함수를 호출할 수 있다.
+
+function randomIdGenerate() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+}
+
+// ### Step 8-2: ID 값을 전달해야 한다. 어디에? toogleComplete 함수에
+// for 문이 돌면서 taskList[i].textContent 가 아닌 taskList[i].id 값을 전달
+// 단 값을 전달할 때 '' 싱글 쿼테이션으로 묶어 준다.
+// 또한 ${}변수처리를 해야 한다.
