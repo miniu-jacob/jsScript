@@ -1,0 +1,32 @@
+.like-food{
+    margin-left: 40px;
+}
+
+.image-size{
+    margin: 0px;
+    padding: 0px;
+    width: 40%;
+    height: auto;
+}
+
+.mg-none{
+    margin: 0px;
+    padding: 0px;
+    line-height: 0.5;
+}
+
+.mg-1{
+    margin-top: 30px;
+}
+
+table, tr, td{
+    border: 1px #000 solid;
+}
+.under-line{
+    text-decoration: underline;
+}
+
+input::placeholder{
+    color: grey;
+    font-weight: bold;
+}
