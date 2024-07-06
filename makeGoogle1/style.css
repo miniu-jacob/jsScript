@@ -1,0 +1,38 @@
+body{
+    margin: 0px;
+}
+
+.navbar{
+    /* ## Step 1: 네비게이션 바를 우측 정렬할 때 
+    float: left, right 을 쓴다. 우측은 right 
+    또한 밑줄을 없애야 한다. 
+    text-decoration: ;
+    */
+    float: right;
+    /* border: 1px solid ; */
+    margin: 10px;
+    
+}
+
+.nav-item{
+    /* ## Step 2: a 테그의 밑줄을 지우는데 자주 사용된다.  */
+    text-decoration: none;
+    color: black;
+    margin-right: 15px;
+}
+
+/* ## Step3: 간격이 좁아서 넓히는 경우 */
+/* 부모의 테그 즉 .navbar 테그에 border와 margin을 주면 된다 
+확인을 위해서는 박스를 만들어 보면 된다. 
+border: 1px solid red; */
+
+/* ## Step 4: hover 이벤트 주기 */
+/*
+    nav-item 에 === .nav-item
+    hover라는 이벤트가 생기면 === :hover
+    이 스타일을 실행시켜라.
+*/
+.nav-item:hover{
+    text-decoration: underline;
+
+}
