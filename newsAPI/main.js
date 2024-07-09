@@ -1,4 +1,4 @@
-import config from '../apikey.js';
+import config from './apikey.js';
 const API_KEY = config.NEWS_API_KEY1;
 // const API_KEY = process.env.NEWS_API_KEY1;
 let newsList = [];
@@ -7,11 +7,11 @@ const categoryButtons = document.querySelectorAll('.menu-line button');
 //  array에 있는 버튼 하나하나에 클릭 이벤트 주기
 // 이 때는 forEach() 를 사용할 수 있다.  map이랑 비슷한데 아이템 하나하나에 액션을 줄 수 있다.
 //
-categoryButtons.forEach((menu) =>
-    menu.addEventListener('click', (event) => {
+categoryButtons.forEach((menu) => {
+    return menu.addEventListener('click', (event) => {
         getNewsByCategory(event);
-    })
-);
+    });
+});
 
 // 뉴스를 가지고 오는 함수 만들기
 const getNews = async () => {
@@ -80,6 +80,10 @@ const getNewsByCategory = async (event) => {
     newsList = data.articles;
     // 뉴스 리스트가 확정이 되고 난 후에 render를 돌려야 한다.
     render();
+};
+
+const getNewsByKeyword = () => {
+    console.log('keyword');
 };
 
 const render = () => {
