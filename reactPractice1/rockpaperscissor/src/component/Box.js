@@ -20,7 +20,7 @@ const Box = (props) => {
                 src={props.action && props.action.img}
                 alt=''
             />
-            <h2>WIN!</h2>
+            <h2>{props.result}</h2>
         </div>
     );
 };

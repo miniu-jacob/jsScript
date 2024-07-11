@@ -54,14 +54,36 @@ const choice = {
 // 그리고 App() 함수 안에서 정의한다.
 
 // 4. 컴퓨터의 값은 random하게 선택이 된다.
+// ### Step 4.1 : 값을 보여주려면? UI 를 업데이트 해야 한다.
+// UI 업데이트는? state를 만든다.
+
 // 5. 이기면 초록색, 지면 빨간색으로 변한다. 비기면-검정색
 // 6. 이기면 Win, 지면 Looser,
+
+const randomChoice = () => {
+    // ### Step 4.2: 객체를 배열화 시킨다.
+    // Object.keys 가 의미하는 것 객체의 이름
+    // 객체의 키 값만 뽑아서 array 로 만들어 주는 함수다.
+    // array에는 index 번호가 있다.
+    let itemArray = Object.keys(choice);
+    console.log('item array', itemArray);
+
+    // Math.floor(Math.random());
+    let randomItem = Math.floor(Math.random() * itemArray.length);
+    let final = itemArray[randomItem];
+    console.log('random value: ', final);
+    return choice[final];
+};
+
 function App() {
     // ### 3.4: setState 정의
     // const [변수, set변수] = useState(0); (어떤 값인지 모를때는 null)
 
     // ### 3.5: useSelect 의 값을 내가 선택한 값으로 바꿔 준다. 3.4에서와 동일
     const [userSelect, setUserSelect] = useState(null);
+    const [comSelect, setComSelect] = useState(null);
+    const [result, setResult] = useState('');
+
     const play = (userChoice) => {
         // userSelect = 하고 값을 어디서 가지고 오냐? choice에서
         // userSelect 의 값을 >> userSelect =
@@ -73,15 +95,42 @@ function App() {
         // choice[userchoice] 라고 쓸 수 있다. 객체에 접근할 때는 name[parameter] 와 같이 쓸 수 있다.
         // setUserSelect(choice[])
         setUserSelect(choice[userChoice]);
+        let comChoice = randomChoice();
+        setComSelect(comChoice);
+        setResult(whoWin(choice[userChoice], comChoice));
+        console.log('result: ', result);
+        // setComSelect(choice)
         // console.log('선택한 값: ', userSelect);
         // console.log('선택됨', userChoice);
+    };
+
+    const whoWin = (user, computer) => {
+        // user == computer tie
+        // user == rock, computer == scissors user win
+        // user == scissors, computer == paper user win
+        if (user.name === computer.name) {
+            return 'TIE';
+            // console.log('Result: TIE');
+        } else if (user.name === 'Rock')
+            return computer.name === 'Scissors' ? 'WIN!!' : 'Loose!';
+        else if (user.name === 'Scissors')
+            return computer.name === 'Paper' ? 'WIN!!' : 'Loose!';
+        else if (user.name === 'Paper')
+            return computer === 'Rock' ? 'WIN!!' : 'Loose!';
+        //         return 'WIN!';
+        //     } else {
+        //         return 'Lose!';
+        //     }
+        // }
+
+        console.log('user', user, 'Computer', computer);
     };
     return (
         <div>
             <div className='container'>
-                <Box player='You' action={userSelect} />
+                <Box player='You' action={userSelect} result={result} />
                 {/* <Box player='You' action='scissors' /> */}
-                <Box player='Computer' action='rock' />
+                <Box player='Computer' action={comSelect} result={result} />
             </div>
             <div className='button-list'>
                 <button onClick={() => play('scissors')}>가위</button>
