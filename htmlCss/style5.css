@@ -1,0 +1,58 @@
+body{
+    margin: 0px;
+}
+
+
+#sidebar-left{
+    float: left;
+    width: 30%;
+    height: 435px;
+    background-color: yellow;
+}
+
+.first-space{
+    border: 1px solid black;
+}
+
+#sidebar-left-up{
+    background-color: blue;
+    width: 95%;
+    height: 200px;
+    margin-left: 5px;
+}
+
+#sidebar-left-down{
+    background-color: blue;
+    width: 95%;
+    height: 200px;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+#sidebar-right{
+    float: right;
+    width: 30%;
+    height: 435px;
+    background-color: red;
+}
+
+#sidebar-right-down{
+    background-color: blue;
+    width: 95%;
+    height: 200px;
+    margin-left: 5px;
+    margin-top: 200px;
+}
+
+.mid-content{
+    float: left;
+    width: 300px;
+    height: 400px;
+    background-color: green;
+}
+
+.side-content-box{
+    display: inline;
+    margin: 5px;
+    background-color: white;
+}

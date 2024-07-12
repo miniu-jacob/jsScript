@@ -1,0 +1,13 @@
+body{
+      font: normal normal normal 100%/normal sans-serif !important;
+
+}
+
+.singerImg{
+    width: 400px;
+    height: auto;
+}
+
+.table-line{
+    border: 2px double black;
+}
