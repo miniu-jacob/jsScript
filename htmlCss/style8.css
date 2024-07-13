@@ -1,0 +1,55 @@
+body{
+    margin: 0px;
+}
+
+.box{
+    border: 50px solid black;
+    margin: 10px;
+    width: 300px;
+    height: 50px;
+    padding: 50px;
+}
+
+.box1{
+    border-color: red;
+}
+.box2{
+    border-color: green;
+    /* display: none; */
+    visibility: hidden;
+}
+.box3{
+    border-color: blue;
+}
+
+.challenge2{
+    margin-left: 100px;
+}
+
+h1{
+    color: #9b59b6;
+}
+
+h1::before{
+    content: "Topic: ";
+}
+
+h1:first-child{
+    text-align: center;
+}
+
+p{
+    font-size: 16px;
+    font-family: Verdana;
+    font-style: italic;
+    /* text-transform: capitalize; */
+}
+
+P::first-letter{
+    font-size: 200%;
+    color: #9b59b6;
+}
+
+.sub-header{
+    text-decoration: ;
+}
