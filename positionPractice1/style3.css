@@ -1,0 +1,40 @@
+body{
+    margin: 0;
+}
+.container{
+    border: 1px solid red;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.box1{
+    width: 500px;
+    background-color: darkgray;
+    height: 250px;
+}
+
+.box2{
+    border: 1px solid red;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    color: white;
+    align-self: center;
+    right: 400px;
+    bottom: 100px;
+
+}
+
+.box3{
+    border: 1px solid red;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    color: white;
+    bottom: 150px;
+}

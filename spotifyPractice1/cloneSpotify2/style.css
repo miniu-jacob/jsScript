@@ -1,0 +1,160 @@
+body{
+    margin: 0;
+    /* display: flex; */
+    background-color: black;
+    color: white;
+    font-family: spotify-circular, Helvetica, Arial, sans-serif;
+}
+
+.logo-img{
+    width: 132px;
+    height: auto;
+}
+
+.nav-bar{
+    /* border: 1px solid red; */
+    display: flex;
+    /* height: 150px; */
+    align-items: center;
+    justify-content: space-around;
+    /* text-decoration: none; */
+}
+
+.menu-line{
+    /* margin: 10px; */
+
+    font-weight: 600;
+}
+
+.menu-line a{
+    /* border: 1px solid red; */
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.menu-line a:hover{
+    color: #1ed760;
+}
+
+.main-area{
+    height: 600px;
+    background-color: rgb(41, 65, 171);
+    background-image: url(https://www-growth.scdn.co/static/home/bursts.svg);
+    background-size: 175%;
+    background-position: 46% 4%;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-data{
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.data{
+    font-size: 146px;
+    line-height: 166px;
+    font-weight: 900;
+    color: #1ed760;
+}
+
+.main-data-head{
+    position: relative;
+    left: -100px;
+}
+
+.main-data-tail{
+    position: relative;
+    left: 200px;
+}
+
+.text-1{
+    color: #1ed760;
+    font-size: 18px;
+    line-height: 24px;
+    padding-bottom: 40px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.main-button{
+    background-color: #2de26d;
+    font-size: inherit;
+    font-weight: 700;
+    color: #2941ab;
+    border: none;
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: 30px ;
+}
+
+.main-button:hover{
+    transform: scale(1.07);
+}
+
+.footer{
+    height: 450px;
+    border: 1px solid green;
+}
+
+/* Footer menu */
+.footer-menu{
+    margin: 50px 30px;
+    display: flex;
+    border: 1px solid red;
+    height: 350px;
+    justify-content: space-between;
+    /* flex-direction: column; */
+    
+}
+
+.footer-menu-left{
+    display: flex;
+    border: 1px solid yellow; 
+    flex-direction: row;
+
+}
+
+.footer-menu-right{
+    border: 1px solid pink;
+}
+
+.footer-items{
+    border: 1px solid white;
+}
+
+.footer-items{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    padding: 0 15px;
+}
+
+.footer-logo {
+    /* position: relative; */
+    /* top: -15px; */
+}
+
+.footer-items span{
+    color: #919496;
+    font-weight: 900;
+    margin: 20px 0px;
+}
+
+.footer-items a{
+    padding-bottom: 15px;
+    padding-top: 3px;
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+}
+
+.footer-items a:hover{
+    color: #1ed760;
+}
