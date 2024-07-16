@@ -136,10 +136,16 @@ const doubleNumber = numbers.map((value)=> value * 2);
 // 시작 value 를 0으로 시작
 // recudeRight (배열의 뒤에서 시작 - 오징어 게임 456번부터 시작)
 // 평균은 결과 값을 배열의 길이 (students 배열 - length 로 나눈다. )
-const result = students.reduce((prev, current, index) => {
-    console.log('--------------');
-    console.log(prev);
-    console.log(current);
-    return prev + current.score;
-}, 0);
-console.log(result / students.length);
+// const result = students.reduce((prev, current, index) => {
+//     console.log('--------------');
+//     console.log(prev);
+//     console.log(current);
+//     return prev + current.score;
+// }, 0);
+// console.log(result / students.length);
+
+// ### 10: 학생들의 모든 점수를 스트링으로 변환
+// map으로 점수만 배열로 가지고 와서 join 사용
+// const result = students.map((student) => student.score).join();
+
+// console.log(result);
