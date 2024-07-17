@@ -1,0 +1,54 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #1E1F25;
+    background-color: var(--body-bg);
+    font-family: var(--font-family);
+}
+
+:root {
+    --font-family: 'Karla', sans-serif;
+    --body-bg: #1E1F25;
+    --btn-bg: #000;
+    --btn-color: #cbcbcb;
+    --btn-color-hover: #fff;
+    --brad-color1: #eeaf61;
+    --brad-color2: #fb9062;
+    --brad-color3: #ee5d6c;
+    --brad-color4: #cd4993;
+    --brad-color5: #6a0d83;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+    height: 100vh;
+}
+
+.button-border{
+    background: linear-gradient(115deg,#eeaf61, #fb9062, #ee5d6c, #ce49ce, #6a0d83);
+    padding: 5px;
+}
+
+.button{
+    border: none;
+    background-color: var(--btn-bg);
+    color: var(--btn-color);
+    padding: 1em 1.5em;
+    font-family: inherit;
+    letter-spacing: .1em;
+    /* border-image: linear-gradient(115deg,#eeaf61, #fb9062, #ee5d6c, #ce49ce, #6a0d83);  */
+    /* border-image-slice: 1; */
+}
+
+.button-border:hover {
+    background: linear-gradient(230deg,#eeaf61, #fb9062, #ee5d6c, #ce49ce, #6a0d83); ;
+
+}
+
+.button-border:hover .button {
+   color: var(--btn-color-hover);
+   padding: 1.1em 1.6em;
+}
