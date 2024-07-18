@@ -7,30 +7,32 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div class="container">
-            <h1>호치민 인사대 MT!!</h1>
-            <h1>술게임</h1>
-            <h2><span class="red-change">죽음</span>의 업 & 다운</h2>
-            <img
-                class="img-src"
-                src="https://media1.tenor.com/m/zJO-if-lU9QAAAAd/antiuribista-centro-democratico.gif"
-                alt=""
-            />
-            <p class="result-area" id="result-area">죽기 싫다면 맞춰라!!</p>
-            <div class="change-left">남은 기회: 5</div>
-            <div class="input-area">
-                <input
-                    id="user-input"
-                    type="text"
-                    class="input-box"
-                    placeholder="1부터 100까지 숫자를 입력"
+        <main>
+            <div class="container">
+                <h1>호치민 인사대 MT!!</h1>
+                <h1>술게임</h1>
+                <h2><span class="red-change">죽음</span>의 업 & 다운</h2>
+                <img
+                    class="img-src"
+                    src="https://media1.tenor.com/m/zJO-if-lU9QAAAAd/antiuribista-centro-democratico.gif"
+                    alt=""
                 />
-                <button id="play-button" class="input-button">GO!!</button>
+                <p class="result-area" id="result-area">죽기 싫다면 맞춰라!!</p>
+                <div id="chance-left" class="chance-left">남은 기회: 5</div>
+                <div class="input-area">
+                    <input
+                        id="user-input"
+                        type="text"
+                        class="input-box"
+                        placeholder="1부터 100까지 숫자를 입력"
+                    />
+                    <button id="play-button" class="input-button">GO!!</button>
+                </div>
+                <div class="reset-area">
+                    <button id="reset-button">Reset</button>
+                </div>
             </div>
-            <div class="reset-area">
-                <button id="reset-button">Reset</button>
-            </div>
-        </div>
+        </main>
         <script src="main.js"></script>
     </body>
 </html>
