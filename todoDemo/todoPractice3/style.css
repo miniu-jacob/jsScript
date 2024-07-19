@@ -83,7 +83,7 @@ main{
     transition: 0.5s;
 }
 
-.task-area {
+.task {
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -95,4 +95,8 @@ main{
     height: 2em;
     width: 50px;
     text-align: center;
+}
+
+.task-done{
+    text-decoration: line-through;
 }

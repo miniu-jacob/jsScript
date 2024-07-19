@@ -36,9 +36,95 @@ function menuIndicator(e) {
 */
 let userInput = document.getElementById('user-input');
 let inputButton = document.getElementById('input-button');
+let taskList = [];
+let tabs = document.querySelectorAll('.progress-bar div');
+// console.log('탭들 정보: ', tabs);
 
 inputButton.addEventListener('click', addTask);
 
+// 엔터키를 눌렀을 때 addTask 함수를 호출하는 이벤트 리스너 추가
+userInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') addTask();
+});
+
+// 입력 필드에 포커싱을 받으면 기존 내용을 지우는 이벤트 리스너 추가
+userInput.addEventListener('focus', () => (userInput.value = ''));
+
+// ### Step for 문으로 이벤트 리스너  추가
+tabs.forEach((el) => {
+    el.addEventListener('click', (event) => filter(event));
+});
+
 function addTask() {
-    console.log(userInput.value);
+    // let taskContent = userInput.value;
+    let task = {
+        id: randomIDGenerate(),
+        taskContent: userInput.value,
+        isComplete: false,
+    };
+    taskList.push(task);
+    console.log('clicked', taskList);
+    render();
+    userInput.value = '';
+    userInput.focus();
+}
+
+function randomIDGenerate() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+}
+
+function render() {
+    // taskList.forEach((item) => {
+    let resultHTML = '';
+
+    taskList.forEach((item) => {
+        if (item.isComplete == true) {
+            resultHTML += `<div class="task">
+                        <div class='task-done'>${item.taskContent}</div>
+                        <div class="task-buttons">
+                            <button onclick="checkItem('${item.id}')">Check</button>
+                            <button onclick="deleteItem('${item.id}')">Delete</button>
+                        </div>
+                    </div>`;
+        } else {
+            resultHTML += `<div class="task">
+                        <div>${item.taskContent}</div>
+                        <div class="task-buttons">
+                            <button onclick="checkItem('${item.id}')">Check</button>
+                            <button onclick="deleteItem('${item.id}')">Delete</button>
+                        </div>
+                    </div>`;
+        }
+    });
+
+    document.getElementById('task-board').innerHTML = resultHTML;
+}
+
+function checkItem(id) {
+    for (i = 0; i < taskList.length; i++) {
+        if (taskList[i].id === id) {
+            taskList[i].isComplete = !taskList[i].isComplete;
+            break;
+        }
+    }
+    render();
+    console.log('아이템 리스트: ', taskList);
+    console.log('체크 클릭함 - ID: ', id);
+}
+
+//  아이템 삭제 함수
+function deleteItem(id) {
+    for (i = 0; i < taskList.length; i++) {
+        if (taskList[i].id === id) {
+            taskList.splice(i, 1);
+            break;
+        }
+    }
+    render();
+    // console.log('삭제 버튼 누름', id);
+}
+
+function filter(event) {
+    // console.log('클릭함', e.target);
+    console.log('클릭함current: ', event.currentTarget.id);
 }
