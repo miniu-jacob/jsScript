@@ -1,0 +1,98 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    background: url(../images/background.jfif);
+    font-family: "Rajdhani", sans-serif;
+
+}
+
+.progress-bar{
+    display: flex;
+}
+
+main{
+    border: 1px solid red;
+    height: 98vh;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-top: 10px solid blanchedalmond;
+    border-bottom: 10px solid blanchedalmond;
+    background: white;
+    /* position: relative; */
+}
+
+.container{
+    margin-left: 10px;
+}
+
+.input-area{
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    /* width: 70%; */
+}
+
+.input-area input, 
+.input-area button {
+    height: 30px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.input-area input {
+    width: 70%;
+    margin-right: 10px;
+    border: 1px solid blanchedalmond
+}
+
+.input-area button{
+    background: blanchedalmond;
+    border: none;
+}
+
+.progress {
+    border: 2px solid blanchedalmond;
+    width: 95%;
+}
+
+.progress-bar{
+    /* border-left: 1px solid blanchedalmond; */
+    border-bottom: 2px solid blanchedalmond;
+    /* width: 90%; */
+    padding: 1em;
+    margin: 0 left;
+}
+
+.progress-bar div{
+    margin-right: 2em;
+    cursor: pointer;
+}
+
+#under-bar{
+    position: absolute;
+    width: 30px;
+    top: 176px;
+    left: 106px;
+    /* width: 0;
+    top: 0;
+    left: 0; */
+    background-color: pink;
+    height: 4px;
+    transition: 0.5s;
+}
+
+.task-area {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-button button{
+    /* padding: 10px; */
+    height: 2em;
+    width: 50px;
+    text-align: center;
+}
