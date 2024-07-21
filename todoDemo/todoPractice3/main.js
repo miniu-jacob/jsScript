@@ -37,6 +37,9 @@ function menuIndicator(e) {
 let userInput = document.getElementById('user-input');
 let inputButton = document.getElementById('input-button');
 let taskList = [];
+let filterList = [];
+let taskState = 'all'; // 내가 무슨 탭을 들었는지 확인하기 위한 전역변수 선언
+
 let tabs = document.querySelectorAll('.progress-bar div');
 // console.log('탭들 정보: ', tabs);
 
@@ -74,10 +77,28 @@ function randomIDGenerate() {
 }
 
 function render() {
-    // taskList.forEach((item) => {
+    // 필터링된 아이템들을 출력해 주기 위한 조건문
+    let list = [];
+    // 필터링된 "리스트" 를 보여주기 위해 리스트라는 것을 만든다.
+    // 전체 리스트는 taskList가 가지고 있다. 따라서 all 인 경우에는
+    // ### (2) - 리스트(list) 에 전체 할일 리스트(taskList)를 넣어(=)준다.
+    console.log('taskState 상태: ', taskState);
+
+    if (taskState === 'all') {
+        // 전체 출력
+        list = taskList; // (2)
+    } else if (taskState === 'processing' || taskState === 'done') {
+        // 필터링된 아이템 리스트 출력
+        list = filterList;
+        // processing 에서는 필터링된 리스트를 리스트에 넣어준다.
+        // 다만 filterList 변수는 filter() 에서만 사용중이기 때문에
+        // 전역변수로 수정한다. (3)
+    }
+    console.log('list 내용: ', list);
+
     let resultHTML = '';
 
-    taskList.forEach((item) => {
+    list.forEach((item) => {
         if (item.isComplete == true) {
             resultHTML += `<div class="task">
                         <div class='task-done'>${item.taskContent}</div>
@@ -107,8 +128,19 @@ function checkItem(id) {
             break;
         }
     }
+    // 진행 중 (processing)인 탭을 누르고 아이템에 체크를 하면  UI가
+    // 바로 업데이트 되지 않음
+    // checkItem 함수에서 isComplete 상태를 변경하게 되면
+    // filter 함수를 호출하여 UI를 다시 그리도록 변경
+    // 필터에 target.id 값을 전달해 준다.
+    filter({ currentTarget: { id: taskState } });
+    // 필터 함수에서는 이벤트를 받아 event.currentTarget.id 의 값을
+    // taskState에 넣는다.
+    // event의 currentTarget.id의 값을 받는 이유는 어떤 탭을 클릭했는지를 알기 위함이다.
+    // 따라서 필터 함수를 호출할 때 {타겟: {아이디: taskState}}
+
     render();
-    console.log('아이템 리스트: ', taskList);
+    // console.log('아이템 리스트: ', taskList);
     console.log('체크 클릭함 - ID: ', id);
 }
 
@@ -125,6 +157,32 @@ function deleteItem(id) {
 }
 
 function filter(event) {
-    // console.log('클릭함', e.target);
-    console.log('클릭함current: ', event.currentTarget.id);
+    taskState = event.currentTarget.id;
+    filterList = [];
+    // let filterList = []; ------ (3)
+    if (taskState === 'all') {
+        // 모든 아이템 출력
+        // 모든 아이템을 출력한다. 지금 하고 있네. 어디서? render에서
+        render();
+    } else if (taskState === 'processing' || taskState === 'done') {
+        // 진행 중인 아이템 출력
+        // taskList.isComplete = false
+        for (i = 0; i < taskList.length; i++) {
+            // 진행 중인 애들을 찾는다.
+            if (taskList[i].isComplete === false) {
+                filterList.push(taskList[i]);
+            }
+        }
+        render();
+        console.log('processing', filterList);
+        // 완료된 아이템 출력
+        // taskList.isComplete = true
+        // console.log('클릭함', e.target);
+        // console.log('클릭함current: ', event.currentTarget.id);
+    }
 }
+
+/*
+if 
+
+*/

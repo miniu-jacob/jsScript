@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <div>
+                    <h1>To do List</h1>
+                </div>
+                <div>
+                    <input
+                        id="user-input"
+                        class="user-input-box"
+                        type="text"
+                        placeholder="오늘의 할일은?"
+                    />
+                    <button id="add-task-button" class="add-button">+</button>
+                </div>
+                <div class="status-tabs progress-bar">
+                    <div id="under-bar"></div>
+                    <div id="all">모두</div>
+                    <div id="processing">진행 중</div>
+                    <div id="done">끝남</div>
+                </div>
+                <div id="tasks" class="task-items">
+                    <div class="task-area">
+                        <div>자바 스크립트 공부</div>
+                        <div class="task-buttons">
+                            <button>Check</button>
+                            <button>Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="main.js"></script>
+    </body>
+</html>
