@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="shortcut icon"
+            href="/public-imgs/images/favicon.ico"
+            type="image/x-icon"
+        />
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <div class="headline">
+                    <h1>To do List</h1>
+                    <div class="input-area">
+                        <input
+                            type="text"
+                            class="user-input"
+                            placeholder="오늘의 할일은?"
+                        />
+                        <button class="user-input-button">+</button>
+                        <span class="empty-input"
+                            >아무것도 입력하지 않았습니다.</span
+                        >
+                    </div>
+                </div>
+                <div class="filter-menus">
+                    <div id="under-bar"></div>
+                    <div>모두</div>
+                    <div>진행 중</div>
+                    <div>끝남</div>
+                </div>
+                <div class="task-area">
+                    <div>할일: 자바스크립트 공부</div>
+                    <div class="task-check-button">
+                        <button>Check</button>
+                        <button>Delete</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="main.js"></script>
+    </body>
+</html>

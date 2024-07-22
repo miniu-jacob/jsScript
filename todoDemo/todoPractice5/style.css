@@ -1,0 +1,93 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    background: url(../images/background.jfif);
+}
+
+.container{
+    /* border: 1px solid red; */
+    width: 80%;
+    margin: 0 auto;
+    height: 98vh;
+    background-color: white;
+    border-top: 5px solid blanchedalmond;
+    border-bottom: 5px solid blanchedalmond;
+    padding-left: 10px;
+    
+}
+
+.headline{
+    border: 1px solid yellow;
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+
+.headline h1{
+    /* margin-top: 10px; */
+    margin: .5rem 0;
+}
+
+.empty-input{
+    font-size: .9rem;
+    color: red;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 1rem;
+    /* border: 1px solid pink; */
+}
+
+.user-input{
+    width: 50%;
+}
+
+.user-input,
+.user-input-button{
+    height: 30px;
+    box-sizing: border-box;
+}
+
+.user-input-button{
+    width: 30px;
+    margin-left: 5px;
+}
+
+.filter-menus{
+    /* border: 1px solid green; */
+    display: flex;
+    border: 1px solid blanchedalmond;
+    margin-top: 15px;
+    box-sizing: border-box;
+    width: 98%;
+    
+}
+
+.filter-menus div{
+    padding: 10px;
+}
+
+.task-area{
+    border: 1px solid blanchedalmond;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 10px; */
+    width: 98%;
+    padding: 1em .5rem;
+    /* padding-left: 10px; */
+    box-sizing: border-box;
+}
+
+.task-check-button button{
+    margin-right: 10px;
+    padding: 5px;
+}
+
+#under-bar{
+    position: absolute;
+    
+    background-color: pink;
+    width: 50px;
+    height: 4px;
+    top: 140px;
+    padding: 0;
+}
