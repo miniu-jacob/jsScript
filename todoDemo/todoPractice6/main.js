@@ -11,6 +11,9 @@ let userInput = document.querySelector('.user-input-box');
 const inputBtn = document.querySelector('.user-input-btn');
 let warningMsg = document.querySelector('.warning-msg');
 let taskList = [];
+let list = [];
+let filterList = [];
+let taskState = 'all';
 
 warningMsg.style.display = 'none';
 // 클릭 이벤트 리스너 발생
@@ -66,19 +69,24 @@ function randomIDGenerate() {
 function render() {
     let resultHTML = '';
 
+    if (taskState.includes('all')) {
+        list = taskList;
+    } else if (taskState.includes('processing') || taskState.includes('done')) {
+        list = filterList;
+    }
     // taskList 배열의 isComplete 상태를 체크해서
     // 체크가 클릭된 (isComplete === true) 인 요소들에
     // 취소선을 그린다.
     // 어디에? 각 항목마다, 그러니까 ForEach 안에
-    taskList.forEach((item) => {
+    list.forEach((item) => {
         if (item.isComplete === true) {
             resultHTML += `<div class="task-tabs">
                             <div class="task-box-done">
                                 <div class="task-content">${item.textContent}</div>
                             </div>
                             <div>
-                                <button onclick="taskCheck('${item.id}')">Check</button>
-                                <button>Delete</button>
+                                <button class="check-btn" data-id="${item.id}">Check</button>
+                                <button class="delete-btn" data-id="${item.id}">Delete</button>
                             </div>
                         </div>`;
         } else {
@@ -87,23 +95,86 @@ function render() {
                                 <div>${item.textContent}</div>
                             </div>
                             <div>
-                                <button onclick="taskCheck('${item.id}')">Check</button>
-                                <button>Delete</button>
+                                <button class="check-btn" data-id="${item.id}">Check</button>
+                                <button class="delete-btn" data-id="${item.id}">Delete</button>
                             </div>
                         </div>`;
         }
     });
     document.querySelector('.task-area').innerHTML = resultHTML;
+
+    /* 
+        ### onclick ="" 으로 처리하지 말고 이벤트 리스너로 처리해 보자. 
+        변경 전:  <button onclick="taskCheck('${item.id}')">Check</button> 
+        변경 후:  <button" class="check-btn" data-id="${item.id}">Check</button> 
+        이벤트리스너로 처리하기 위해 class를 하나씩 주고 data-id를 설정해 주었다. 
+        이제 이벤트 리스너를 만든다. 만들때 querySelectorAll() 로 만든다. 
+    */
+    document.querySelectorAll('.check-btn').forEach((button) => {
+        button.addEventListener('click', (e) => {
+            taskCheck(e.target.dataset.id);
+        });
+    });
+
+    document.querySelectorAll('.delete-btn').forEach((button) => {
+        button.addEventListener('click', (e) => {
+            deleteTask(e.target.dataset.id);
+        });
+    });
 }
 
 function taskCheck(id) {
-    // 해당 id를 가진 항목의 인덱스를 찾음
-    // 리턴되는 값은 true 또는 -1 이므로 변수에 넣고 체크함
     const index = taskList.findIndex((item) => item.id === id);
-    if (index !== -1) {
-        taskList[index].isComplete = !taskList[index].isComplete;
+    console.log(id);
+    if (index !== -1) taskList[index].isComplete = !taskList[index].isComplete;
+
+    if (taskState.includes('processing')) {
+        filterList = taskList.filter((item) => !item.isComplete);
+    } else {
+        filterList = taskList.filter((item) => item.isComplete);
     }
-    // console.log(`id: ${id} 체크됨 `);
-    console.table(taskList);
     render();
+    // console.table(taskList);
+}
+
+function deleteTask(id) {
+    const index = taskList.findIndex((item) => item.id === id);
+    if (index !== -1) taskList.splice(index, 1);
+    if (taskState.includes('done')) {
+        filterList = taskList.filter((item) => item.isComplete);
+    } else {
+        filterList = taskList.filter((item) => !item.isComplete);
+    }
+    render();
+}
+
+// 할일 완료 목록 탭에 대한 이벤트 리스너
+document.querySelectorAll('.menus').forEach((tabs) => {
+    tabs.addEventListener('click', (item) => {
+        filterTab(item.target.className);
+        // console.log(item.target.className);
+    });
+});
+
+function filterTab(divTab) {
+    // 탭 이름에 따라 다르게 보여준다.
+    // 상태를 정의할 변수를 하나 만들어준다.
+    console.log(`div 테그 이름: ${divTab}`);
+
+    if (divTab.includes('all')) {
+        // console.log('실행됨', divTab);
+    } else if (divTab.includes('processing')) {
+        filterList = taskList.filter((item) => {
+            return item.isComplete === false;
+        });
+        console.log('filterList: ', filterList);
+    } else if (divTab.includes('done')) {
+        filterList = taskList.filter((item) => {
+            return item.isComplete === true;
+        });
+    }
+    taskState = divTab;
+    console.log(`taskState: ${taskState}`);
+    render();
+    // console.log('실행안됨', divTab);
 }

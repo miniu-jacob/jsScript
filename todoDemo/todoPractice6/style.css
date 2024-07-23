@@ -84,3 +84,7 @@ h1{
     height: 100%;
     background-color: lightgray;
 }
+
+.menus{
+    cursor: pointer;
+}
