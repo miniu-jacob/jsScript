@@ -2,6 +2,8 @@ const userInput = document.querySelector('.user-input');
 const inputButton = document.querySelector('.user-input-button');
 let emptyInput = document.querySelector('.empty-input');
 let taskList = [];
+let filterList = [];
+let taskState = 'all';
 
 // 경고 메시지 노출 안함
 emptyInput.style.display = 'none';
@@ -80,9 +82,16 @@ function addTask() {
 // 그려주는 render 함수
 function render() {
     console.log('랜더함수에서 ', taskList);
+    let list = [];
     let resultHTML = '';
 
-    taskList.forEach((item) => {
+    if (taskState === 'all') {
+        list = taskList;
+    } else if (taskState === 'processing' || taskState === 'done') {
+        list = filterList;
+    }
+
+    list.forEach((item) => {
         // 할일 완료여부 체크 로직
         console.log('완료 여부  체크 중');
         if (item.isFinished === false) {
@@ -126,6 +135,14 @@ function clickCheck(id) {
             `완료된 할일: ${item.textContent}, 완료여부: ${item.isFinished}`
         );
     });
+
+    // 현재 상태에 따라 filterList 업데이트
+    if (taskState === 'processing') {
+        filterList = taskList.filter((task) => !task.isFinished);
+    } else if (taskState === 'done') {
+        filterList = taskList.filter((task) => task.isFinished);
+    }
+
     render();
 }
 
@@ -137,13 +154,33 @@ function clickCheck(id) {
     2. 삭제하는 함수를 호출한다. 
     3. 이때, id를 전달한다. 
 */
+// function deleteTask(id) {
+//     console.log('삭제할 항목의 ID: ', id);
+//     taskList.forEach((deleteItem) => {
+//         if (deleteItem.id === id) {
+//             taskList.splice(deleteItem.id, 1);
+//         }
+//     });
+//     render();
+// }
+
+// 할일을 삭제하는 함수의 개선
 function deleteTask(id) {
-    console.log('삭제할 항목의 ID: ', id);
-    taskList.forEach((deleteItem) => {
-        if (deleteItem.id === id) {
-            taskList.splice(deleteItem.id, 1);
-        }
-    });
+    console.log('삭제할 항목의 아이디: ', id);
+    // 항목의 인덱스를 찾기 위해 findIndex 함수 사용
+    const index = taskList.findIndex((delItem) => delItem.id === id);
+    console.log(index);
+
+    if (index !== -1) {
+        taskList.splice(index, 1);
+    }
+
+    if (taskState === 'processing') {
+        filterList = taskList.filter((task) => !task.isFinished);
+    } else if (taskState === 'done') {
+        filterList = taskList.filter((task) => task.isFinished);
+    }
+
     render();
 }
 
@@ -151,14 +188,45 @@ function deleteTask(id) {
 // 이때, 완료 여부를 체크하여 UI를 다시 그린다.
 
 // 진행 상황 탭을 누를 때 각 탭에 대한 적절한 요소를 출력한다.
+// 메뉴를 누르면 해당 div를 가지고 온다.
+// 메뉴를 눌렀을 때의 이벤트 리스너를 동작시킨다.
 
 // 메뉴, 언더바
 let underBar = document.getElementById('under-bar');
 let menus = document.querySelectorAll('.progress-bar div');
 
-menus.forEach((menu) =>
-    menu.addEventListener('click', (e) => menuIndicator(e))
-);
+menus.forEach((item) => {
+    item.addEventListener('click', (event) => {
+        console.log(event.target.className);
+        menuIndicator(event);
+        filterTask(event);
+    });
+});
+
+// filterTask 함수를 작성한다.
+function filterTask(event) {
+    taskState = event.target.className;
+    // let filterList = [];
+    if (taskState === 'all') {
+        // render();
+    } else if (taskState === 'processing') {
+        filterList = taskList.filter((task) => {
+            return task.isFinished === false;
+        });
+        // render();
+    } else {
+        filterList = taskList.filter((task) => {
+            return task.isFinished === true;
+        });
+        // render();
+    }
+    render();
+    console.log('할일 상태: ', taskState);
+    console.log('filterList: ', filterList);
+}
+
+// 필터를 만들어 줬다면 UI를 그려주는 render에서
+// list = 전체, filterList 를 render에 전달해 준다.
 
 function menuIndicator(e) {
     // 아이템의 왼쪽 시작점부터, 아이템의 너비만큼

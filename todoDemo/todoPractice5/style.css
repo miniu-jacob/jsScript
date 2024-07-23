@@ -86,12 +86,16 @@ html, body{
     position: absolute;
     
     background-color: pink;
-    width: 50px;
+    width: 0px;
     height: 4px;
-    top: 140px;
+    top: 146px;
     padding: 0;
 }
 
 .task-processing{
     text-decoration: line-through;
+}
+
+.progress-bar div{
+    cursor: pointer;
 }
