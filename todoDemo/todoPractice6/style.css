@@ -1,0 +1,72 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    background: url(../images/background.jfif);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+    height: 98vh;
+    border-top: 5px solid blanchedalmond;
+    padding: 0.8rem;
+
+    
+}
+
+h1{
+    margin: 0;
+
+}
+
+.input-area{
+    display: flex;
+    margin: .5rem 0;
+    width: 100%;
+    /* border: 1px solid red; */
+    align-items: center;
+    box-sizing: border-box;
+
+}
+
+.user-input-btn{
+    width: 30px;
+    background-color: blanchedalmond;
+    border: 1px solid blanchedalmond;
+    
+}
+
+.box{
+    margin-right: 10px;
+    height: 25px;
+    box-sizing: border-box;
+    
+}
+
+.user-input-box{
+    width: 50%;
+}
+
+.warning-msg{
+    color: red;
+}
+
+.menu-tabs{
+    display: flex;
+    border: 1px solid blanchedalmond;
+    padding: 10px 0;
+}
+
+.menu-tabs div{
+    margin-right: 20px;
+    line-height: 1.5rem;
+}
+
+.task-tabs{
+    display: flex;
+    border: 1px solid blanchedalmond;
+    justify-content: space-between;
+    padding: 10px;
+}
