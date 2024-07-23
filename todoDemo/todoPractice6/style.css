@@ -69,4 +69,18 @@ h1{
     border: 1px solid blanchedalmond;
     justify-content: space-between;
     padding: 10px;
+    box-sizing: border-box;
+    
+}
+
+.task-content{
+    text-decoration: line-through;
+}
+
+.task-box-done{
+    /* border: 1px solid red; */
+    box-sizing: border-box;
+    width: 80%;
+    height: 100%;
+    background-color: lightgray;
 }
