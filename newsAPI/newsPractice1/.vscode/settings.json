@@ -1,0 +1,9 @@
+{
+    "liveServer.settings.host": "localhost",
+    "liveServer.settings.noBrowser": true,
+    "liveServer.settings.wait": 10000000,
+    "liveServer.settings.autoSave": "off",
+    "liveServer.settings.noReload": true,
+    "liveServer.settings.CustomBrowser": "firefox",
+        // "liveServer.settings.useLocalIp": true,
+}
