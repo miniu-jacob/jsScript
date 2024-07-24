@@ -33,4 +33,10 @@
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.fontSize": 13,
     "liveServer.settings.port": 5501,
+    "liveServer.settings.noBrowser": true,
+    "liveServer.settings.wait": 10000000,
+    "liveServer.settings.autoSave": "off",
+    "liveServer.settings.noReload": true,
+    "liveServer.settings.CustomBrowser": "firefox",
+    "lifeServer.settings.AdvanceCustomBrowserCmdLine": "firefox --auto-open-devtools-for-tabs",
 }

@@ -1,6 +1,5 @@
 {
     "editor.tabSize": "탭 크기",
-    // 공백문자 whitespace가 앞에 ... 으로 나타나게 만드는 친구 (개인적으로 불호)
     "editor.renderWhitespace": "공백문자 렌더링 방법",
     "editor.fontSize": "에디터 글자크기",
     "editor.columnSelection": "드래그나 키보드로 선택할때 멀티셀렉션 되도록 설정",
