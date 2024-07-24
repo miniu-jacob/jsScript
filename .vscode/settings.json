@@ -33,7 +33,8 @@
     "terminal.integrated.fontSize": 13,
     "liveServer.settings.port": 5501,
     "liveServer.settings.noBrowser": true,
-    "liveServer.settings.wait": 10000000,
+    "liveServer.settings.wait": 100,
+    // "liveServer.settings.wait": 10000000,
     "liveServer.settings.autoSave": "off",
     "liveServer.settings.noReload": true,
     "liveServer.settings.CustomBrowser": "firefox",
@@ -137,7 +138,7 @@
     },
 
     // 터미널 글자 폰트 설정
-    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.fontFamily": "monospace",
 
     // 편집 BracketPairs 설정
     "editor.guides.bracketPairs": true,
