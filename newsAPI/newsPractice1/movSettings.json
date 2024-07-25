@@ -1,96 +1,275 @@
+//////// 여기는 사용자별 settings.json 파일 내용
 {
+    // HTML 관련 자동 완성 설정
+    "html.autoClosingTags": true,
+    "html.suggest.html5": true,
 
-}
-  // 개인 설정 업데이트
-  "typescript.locale": "ko",
-  "terminal.integrated.defaultProfile.windows": "PowerShell",
-  "editor.formatOnType": true,
-  "cSpell.userWords": ["apikey"],
+     // emmet 설정
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "html": "html",
+    "css": "css",
+    "scss": "scss"
+  },
 
+    // 자바스크립트, HTML 설정
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // 에디터 설정
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "editor.detectIndentation": false,
-  "editor.fontSize": 13,
-  // "editor.renderWhitespace": "boundary",
-  // 함수 변수명 등 자동으로 제안하기
-  "editor.quickSuggestions": {
-    "other": "on",
-    "comments": "off",
-    "strings": "on"
-  },
-  // 뒤에 제안 박스
-  "editor.suggestOnTriggerCharacters": true,
-  // 엔터키로 제안 내용 수락하기
-  "editor.acceptSuggestionOnEnter": "off",
-  // 줄 바뀜 여부 제어
+  "editor.detectIndentation": false, 
+  "editor.fontSize": 14,
   "editor.wordWrap": "on",
   "editor.lineNumbers": "on",
+  "prettier.tabWidth": 2,
   "editor.parameterHints.enabled": true,
   "editor.wordBasedSuggestions": "matchingDocuments",
   "editor.cursorStyle": "line",
   "editor.columnSelection": false,
   "editor.comments.ignoreEmptyLines": false,
-  // "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.linkedEditing": true,
+  "editor.mouseWheelZoom": true, 
+  // 에디터에서 코드렌즈를 표시할 것인지 여부
+  "editor.codeLens": true,
+  // 에디터에서 활성 들여쓰기 가이드 강조 표시 
+  "editor.guides.highlightActiveIndentation": true,
+  // 에디터 폰트 
+  "editor.codeLensFontFamily": "Consolas, 'D2Coding', \"Noto Sans CJK KR\" , 'Courier New', monospace",
+  "editor.fontFamily": "Consolas, 'D2Coding', \"Noto Sans CJK KR\" , 'Courier New', monospace",
+  "editor.fontLigatures": false,
+
+  // 커서 깜빡임 -> 부드럽게 
   "editor.cursorBlinking": "smooth",
+  // 커서 움직임 -> 부드럽게 
   "editor.cursorSmoothCaretAnimation": "on",
+  // 에디터 컬러 추가 설정 
+  "editor.tokenColorCustomizations": {
+        "textMateRules": [
+          {
+            "scope": "entity.name.type.class",
+            "settings": {
+                "foreground": "#F5c66b"
+              }
+          },
+          {
+        // 주석 색깔, #505050 - C0C0C0 정도까지 조절가능
+        // fontStyle은 "" <-- 기울임 제거
+        "scope": "comment",
+        "settings": {
+          "foreground": "#909090",
+          "fontStyle": ""
+        }
+      },
+        ]
+    },
+
+  // 에디터 컬러 추가 설정 
+
+
+
+  // 파일 저장 설정
   "files.autoSave": "off",
-  "files.exclude": {
+  // 파일에 대한 기본 언어 설정
+  "files.defaultLanguage": "Korean",
+  // 코드 러너 기본 언어 설정
+  "code-runner.defaultLanguage": "korean",
+
+  // 파일 제외 항목들
+    "files.exclude": {
     "**/.classpath": true,
     "**/.history": true,
     "**/.project": true,
     "**/.settings": true,
     "**/node_modules": true
   },
-  "workbench.editor.enablePreview": false,
-  "workbench.sideBar.location": "left",
-  "workbench.tree.expandMode": "doubleClick",
-  "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.labelFormat": "short",
-  "workbench.editor.scrollToSwitchTabs": false,
-  // "workbench.colorTheme": "Default Dark Modern",
-  "scm.diffDecorationsGutterPattern": {
-    "added": true
-  },
+
+  // 따옴표 설정 -> single로 하기 
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
+   
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.formatOnSave": false,
+  // 이거 주의 체크 요망
+  "editor.inlineSuggest.enabled": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.renderWhitespace": "none",
+
+
+
+   // 터미널 윈도우 = 파워쉘 설정
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  // 터미널에서 선택한 텍스트를 클립보드에 복사할지 여부 
   "terminal.integrated.copyOnSelection": true,
+  // 터미널 커서 깜빡임 
   "terminal.integrated.cursorBlinking": true,
+  // 터미널 폰트 크기 
   "terminal.integrated.fontSize": 13,
+   
+   // 타입스크립트 언어 설정
+   "typescript.locale": "ko",
+   "[json]": 
+   {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    // 원래는 파이썬 세팅인데 밖으로 뺌 
+    "editor.formatOnType": true,
+
+    // 개인 설정
+    // spell 단어 등록  >> 여기까지 확인함  
+    "cSpell.userWords": ["apikey", "donot", "classpath", "Consolas", "Noto", "ahmadalli",
+    "rgba" 
+    ], 
+   
+
+    // 워크벤치 설정 내용들 
+    "workbench.editor.enablePreview": false,
+    // 워크벤치 사이드바 위치: 왼쪽
+    "workbench.sideBar.location": "left",
+    // 워크벤치 트리 확장 > 더블클릭
+    "workbench.tree.expandMode": "doubleClick",
+    // 워크벤치 > 저장되지 않은 파일 탭의 위쪽 테두리 그릴건지 
+    "workbench.editor.highlightModifiedTabs": true,
+    // 워크벤치 > 편집기 레이블의 이름과 형식
+    "workbench.editor.labelFormat": "short",
+    // 워크벤치 > 탭 위로 스크롤하여 화면 전환
+      "workbench.editor.scrollToSwitchTabs": false,
+    // 워크벤치 > 아이콘 테마
+    "workbench.iconTheme": "material-icon-theme",
+    //워크벤치 > 스타트 시 에디터 
+    "workbench.startupEditor": "none",
+    // 워크벤치 > 컬러 테마
+    // "workbench.colorTheme": "Community Material Theme Darker High Contrast",
+    // ############### 워크벤치 전체 테마 컨셉
+    "workbench.colorTheme": "Material Theme Darker High Contrast",
+
+  // 워크벤치 전체 테마 상세 설정 
+    "workbench.colorCustomizations": {
+        // vscode 전체 전경 색
+        "editor.background": "#101010",
+        // 맨 왼쪽 activityBar
+        "activityBar.background": "#000000",
+        // 사이드바(파일,폴더) 배경 색
+        "sideBar.background": "#101010",
+
+        // 그룹 헤더 전체 배경 색
+        "editorGroupHeader.tabsBackground": "#1e1e1e",
+        // 선택된 탭 배경색
+        "tab.activeBackground": "#1e1e1e",
+        // 선택된 탭 밑줄
+        "tab.activeBorder": "#2f6cbe",
+        // 비활성인 탭 배경색
+        "tab.inactiveBackground": "#1e1e1e",
+
+        // 상단 타이틀 배경색
+        "titleBar.activeBackground": "#000000",
+        // 상단 타이틀 글자색
+        "titleBar.activeForeground": "#eeffff",
+        // 하단 상태 배경색
+        "statusBar.background": "#191919"
+    },
+
+    // 여백의 diff 장식에 패턴이 사용
+    "scm.diffDecorationsGutterPattern": {
+      "added": true
+    },
+
+    // 익스플로어 세팅
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "explorer.compactFolders": false,
+
+    // 타입스크립트, CSS, 파이썬 등 포맷 및 스니펫
+    "[typescript]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[css]": {
+      "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    },
+    "stylelint.snippet": ["css", "less", "postcss", "scss"],
+    "[python]": {
+      "editor.formatOnType": true,
+      "diffEditor.ignoreTrimWhitespace": false
+    }, 
+
+    // 들여쓰기 관련
+    "indentRainbow.colorOnWhiteSpaceOnly": true,
+     "indentRainbow.colors": [
+        "rgba(255,255,64,0.07)",
+        "rgba(127,255,127,0.07)",
+        "rgba(255,127,255,0.07)",
+        "rgba(79,236,236,0.07)"
+    ],
+    // 들여쓰기 오류 감지를 건너뛰는 언어
+    "indentRainbow.ignoreErrorLanguages": ["markdown"],
+    
+  // 프리티어 관련 설정 
+  // jsx 파일에서 작은 따옴표 사용 여부
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+
+  // nginx 포맷 설정 
+  "[nginx]": {
+    "editor.defaultFormatter": "ahmadalli.vscode-nginx-conf"
+  },
+
+  // notebook 세팅
+  "notebook.output.wordWrap": true,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "notebook.output.scrolling": true,
+
+  // git 설정
+  "git.openRepositoryInParentFolders": "never",
+
+  // cpp 설정
+  "C_Cpp.vcFormat.indent.accessSpecifiers": true,
+  "C_Cpp.vcFormat.indent.braces": true,
+
+  // 라이브 서버 설정
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.ChromeDebuggingAttachment": false,
+  // 라이브 서버 포트 번호 설정 
   "liveServer.settings.port": 5501,
-  "liveServer.settings.noBrowser": true,
-  // "liveServer.settings.wait": 100,
+  // "liveServer.settings.noBrowser": true,
+
+  // ########### 라이브 서버 저장 전 대기 시간
   "liveServer.settings.wait": 10000000,
+  // "liveServer.settings.wait": 100,
+
+  // 라이브 서버 실행 시 사용할 브라우저 
+  "liveServer.settings.CustomBrowser": "firefox",
+  //
+
+
+  // 자동저장이나 새로고침 안하는 설정인데 적용되는지 알 수 없음. 
   "liveServer.settings.autoSave": "off",
   "liveServer.settings.noReload": true,
-  "liveServer.settings.CustomBrowser": "firefox",
   "lifeServer.settings.AdvanceCustomBrowserCmdLine": "firefox --auto-open-devtools-for-tabs",
+}
 
-  // vscode 전체 테마 컨셉
-  "workbench.colorTheme": "Material Theme Darker High Contrast",
-  // vscode 전체 테마 상세 설정
-  "workbench.colorCustomizations": {
-    // vscode 전체 전경 색
-    "editor.background": "#101010",
-    // 맨 왼쪽 activityBar
-    "activityBar.background": "#000000",
-    // 사이드바(파일,폴더) 배경 색
-    "sideBar.background": "#101010",
 
-    // 그룹 헤더 전체 배경 색
-    "editorGroupHeader.tabsBackground": "#1e1e1e",
-    // 선택된 탭 배경색
-    "tab.activeBackground": "#1e1e1e",
-    // 선택된 탭 밑줄
-    "tab.activeBorder": "#2f6cbe",
-    // 비활성인 탭 배경색
-    "tab.inactiveBackground": "#1e1e1e",
 
-    // 상단 타이틀 배경색
-    "titleBar.activeBackground": "#000000",
-    // 상단 타이틀 글자색
-    "titleBar.activeForeground": "#eeffff",
-    // 하단 상태 배경색
-    "statusBar.background": "#191919"
-  },
 
+
+
+
+
+
+
+####### 여기서부터 하나씩 적용 예정
+
+    
   // vscode 변수 색 설정
   "editor.tokenColorCustomizations": {
     "textMateRules": [
