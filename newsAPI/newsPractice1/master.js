@@ -27,4 +27,3 @@ const getLatestNews = async () => {
 };
 
 getLatestNews();
-
