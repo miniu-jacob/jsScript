@@ -17,8 +17,10 @@
 }
 
 .game-img {
-  width: 50%;
+  /* width: 50%; */
+  width: 150px;
   height: auto;
+  
 }
 
 .user-pick-img {
@@ -29,4 +31,19 @@
 .pick-area {
   /* border: 1px solid blue; */
   text-align: center;
+}
+
+.win {
+  border: 10px solid green;
+  color:green;
+}
+
+.loser {
+  border: 10px solid red;
+  color: red;
+}
+
+.tie {
+  border: 10px solid black;
+  color: black;
 }

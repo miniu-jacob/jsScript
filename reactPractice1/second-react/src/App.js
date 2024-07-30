@@ -1,86 +1,120 @@
+import React from 'react'
+import Box from './component/box.js'
+import { useState, useEffect } from 'react';
 import './App.css';
-import { useState } from 'react';
-import  Box from './component/box.js';
-// import { useState } from 'react';
 
-// 사진에 대한 정보를 저장하는 객체를 만들어 보자.
-const choice = {
-  rock: {
-    name: 'Rock', 
-    image: '/images/rock.png',
-  },
+const select = {
   scissors: {
-    name: 'scissors', 
-    image: '/images/scissors.png'
-  }, 
+    name: '가위',
+    img: '/images/scissors.png'
+  },
+  rock: {
+    name: '바위',
+    img: '/images/rock.png'
+  },
   paper: {
-    name: 'paper',
-    image: '/images/paper.png'
+    name: '보',
+    img: '/images/paper.png'
   }
-}
+};
+
+
+// console.log('객체의 이름: ', select)
+
+
 
 function App() {
 
-  // 내가 무엇을 낼지 선택하면 화면에 그려주기
-  const [userSelect, setUserSelect] = useState(null);
+  /*  1. 버튼(img, text, tag 등)에 onClick 이벤트 발생시키기 
+      2. > onClick={playGame()}
+      >> 이렇게 쓰면 함수가 바로 실행되어 버리기 때문에 
+  */
+  const [userChoice, setUserChoice] = useState(null);
+  const [comChoice, setComChoice] = useState(null);
+  const [result, setResult] = useState('');
 
-  // computer 를 위한 useState도 만들어 준다. 
-  const [comSelect, setComSelect] = useState(null);
-
-  // 승패를 보여주는 결과 값
-  const [result, setResult] = useState("");
-  
-  // user가 선택한 값을 알고 있다. 누가? playGame 에서 item 이 
-
-  const playGame = (item) => {
-    // userSelect = choice[userChoice]
-    setUserSelect(choice[item]);
-    // setComSelect() >> 랜덤하게 선택하기
-    let comChoice = randomChoice();
-    setComSelect(choice[comChoice])
-
-    // 이겼는지 졌는지 판단하는 함수 
-    whoWin(choice[item], choice[item]);
+  const playGame = (myChoice) => {
+    console.log('###################');
+    console.log('1. 넘어온 값: ', myChoice);
+    if (select[myChoice]) {        // select 객체에 myChoice 키가 있어? 
+      console.log('2. myChoice 값: ', select[myChoice])
+      setUserChoice(select[myChoice]);
+    } else {
+      console.error(`Invalid choice: ${myChoice}`);
+    }
+    // random 함수를 돌려 변수에 넣는다.
+    const comRandomValue = randomNum();
+    console.log('리턴되어 온 값: ', comRandomValue)
+    setComChoice(comRandomValue)
+    // setResult(checkWinner(select[myChoice], comChoice));
+    // setResult(checkWinner(select[myChoice], comChoice));
     
-    // onClick 이벤트 발생 > playGame 함수 실행(그냥은 안되고 콜백으로)
-    // item 값이 (가위, 바위, 보) 넘어왔으니 업데이트된 
-    // userSelect > 를 넣어준다. 어디에? Box 에 
-    console.log('aaa', item)
+    
+    // setUserChoice(select[myChoice]);
+    // console.log('User가 선택한 값:', userChoice)
+
   }
 
-  const whoWin = (user, computer) => {
-      console.log('user: ', user, 'computer: ', computer)
+  // 실시간 확인 받기 
+  useEffect(() => {
+    if (userChoice && comChoice) {
+      setResult(checkWinner(userChoice, comChoice));
+    }
+  }, [userChoice, comChoice]);
+
+  /*
+  useEffect(() => {
+    console.log('User가 선택한 값: (usereffect이후): ', userChoice);
+  }, [userChoice])
+  */
+
+  const randomNum = () => {
+    let itemsArray = Object.keys(select);
+    let randomPick = Math.floor(Math.random() * 3);
+    let final = itemsArray[randomPick];
+    // return final;
+    return select[final];
+    // console.log('final 값: ', final )
+
+    // console.log('컴퓨터 번호: ', select[randomPick])
+    // 이렇게 하면 컴퓨터 번호는 undefined 라고 나온다. 
+    // select 객체의 키는 문자열이고 randomPick 의 값은 0, 1, 2 이기때문이다. 
+    // select 가 배열이 아니기때문에 이렇게 사용할 수 없다.
+    // select 객체에서 임의의 문자열 키를 선택해야 한다. 
+  }
+
+  // 누가 이겼는지 체크해서 표시해 주는 함수 
+  const checkWinner = (user, computer) => {
+    console.log('User: ', user, 'computer: ', computer)
+    if (user.name === computer.name) {
+      return 'TIE';
+    }
+    else if (user.name === '바위')
+      return computer.name === '가위' ? 'WIN' : 'LOSER!';
+    else if (user.name === '가위')
+      return computer.name === '보' ? 'WIN' : 'LOSER!';
+    else if (user.name === '보')
+      return computer.name === '바위' ? 'WIN' : 'LOSER!';
+
     }
 
-    const randomChoice = () => {
-      // let number = Math.floor(Math.random()*100)%3;
-      // Object.keys 는 객체의 index 번호를 배열로 리턴한다.
-      let itemArray = Object.keys(choice);
-      console.log('item array: ', itemArray)
-      let randomItem = Math.floor(Math.random() * itemArray.length);
-      console.log('random Value', randomItem)
-      let final = itemArray[randomItem];
-      // console.log('final', final)
-      // return itemArray[randomItem];
-      return final;
-      
-    }
   
   return (
     <div>
       <div className='box-screen'>
-        {/* <div>Hello</div> */}
-        <Box player='You' choose={userSelect} className='each-box' result={ result } />
-        <Box player='Computer' choose={comSelect} result={result} />
+        <Box player='You' action={userChoice} result={result} /> 
+        <Box player='Computer' action={comChoice} result={result} /> 
+        {/* <Box player='Computer' imgSrc='#' result='Win' /> */}
+
       </div>
       <div className='pick-area'>
-        <img onClick={()=>playGame('scissors')} className='user-pick-img' src={ choice.scissors.image } alt="" />
-        <img onClick={()=>playGame('rock')} className='user-pick-img'  src={choice.rock.image} alt="" />
-        <img onClick={()=>playGame('paper')} className='user-pick-img' src={choice.paper.image} alt="" />
-      <div><h2>Result</h2></div>
+        <img onClick={() => playGame('scissors')}  className='user-pick-img' src="/images/scissors.png" alt="" />
+        <img onClick={() => playGame('rock')} className='user-pick-img' src="/images/rock.png" alt="" />
+        <img onClick={() => playGame('paper')} className='user-pick-img' src="/images/paper.png" alt="" />
+        <h2>who Win</h2>
       </div>
-   </div> 
-  );
+    </div>
+  )
 }
 
-export default App;
+export default App
