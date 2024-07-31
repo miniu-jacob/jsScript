@@ -1,11 +1,12 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, CSSProperties } from 'react';
 import { API_KEY } from './apikey.js';
 import './App.css';
 import './fonts/Font.css';
 import WeatherBox from './component/WeatherBox.js'; 
 import WeatherButton from './component/WeatherButton.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ClipLoader from "react-spinners/ClipLoader";
 
 let lat;
 let lon;
@@ -14,7 +15,9 @@ function App() {
   const [cityName, setCityName] = useState(null);
   // const [weather, setWeather] = useState({});
   const [weather, setWeather] = useState(null);
-  const [temp, setTemp] = useState(0);
+  // 로딩값을 true 로 바꾸면 로딩이 나타난다.
+  // 그러면 언제 보여줄 것인가?
+  const [loading, setLoading] = useState(false);
 
 
   /* ###  도시 정보를 WeatherButton 에서 관리하게 되면 날씨를 출력하는
@@ -32,24 +35,35 @@ function App() {
   
 
   useEffect(() => {
-    getCurrentLocation();
+    if (city === '') {
+      getCurrentLocation();
+      
+    } else {
+      getWeatherByCity();
+
+    }
     // 배열에 아무것도 주지 않으면 componentDidMount 처럼 발동한다.  
 
-  }, []);
+    // 상황에 맞게 동작해야 한다.
+  }, [city]);
 
-  useEffect(() => {
-    getWeatherByCity();
-    console.log('city? ',city )
-   }, [city]);
+  //   useEffect(() => {
+  //     getWeatherByCity();
+  //     console.log('city? ', city);
+  // 
+  //    }, [city]);
 
 
   const getWeatherByCity = async () => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${ city }&appid=${ API_KEY}`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
+    setLoading(true);
     let response = await fetch(url);
     let data = await response.json();
     console.log('data', data)
+    setWeather(data);
+    setLoading(false);
      
-   }
+  }
 
   const getCurrentLocation = () => {
     console.log('함수 실행됨')
@@ -64,45 +78,60 @@ function App() {
 
 
 
-const sendRequest = async (lat, lon) => {
-  const baseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=kr&appid=${API_KEY}`;
-  // 섭씨로 요청하려면 unit=matric 을 추가한다. 
-  console.log('URL: ', baseUrl);
-  const url = new URL(baseUrl);
-  const response = await fetch(url);
-  const data = await response.json();
-  console.log('날씨 데이터 값: ', data)
+  const sendRequest = async (lat, lon) => {
+    const baseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=kr&appid=${API_KEY}`;
+    // 섭씨로 요청하려면 unit=matric 을 추가한다. 
+    console.log('URL: ', baseUrl);
+    setLoading(true);
+    const url = new URL(baseUrl);
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log('날씨 데이터 값: ', data)
 
 
-  // weather 의 값을 업데이트한다. 
-  setWeather(data);
+    // weather 의 값을 업데이트한다. 
+    setWeather(data);
+    setLoading(false);
 
-  // const valNum = calTemp(data.main.temp);
+    // const valNum = calTemp(data.main.temp);
 
-  // setCityName(data.name);
-  // setWeather(data.weather[0]);
-  // setTemp(valNum)
+    // setCityName(data.name);
+    // setWeather(data.weather[0]);
+    // setTemp(valNum)
 
 
-  // console.log('전체데이터', data)
-  // console.log('data: ', data.name)
-  // console.log('날씨정보', data.weather[0])
-  // console.log('시간: ', data.timezone)
-  // console.log('온도: ', valNum)
-}
+    // console.log('전체데이터', data)
+    // console.log('data: ', data.name)
+    // console.log('날씨정보', data.weather[0])
+    // console.log('시간: ', data.timezone)
+    // console.log('온도: ', valNum)
+  }
     
 
-// const calTemp = (tempCal) => {
-//   return  tempCal - 273.15;
-//    
-//  }
+  // const calTemp = (tempCal) => {
+  //   return  tempCal - 273.15;
+  //    
+  //  }
 
   return (
     <div>
-      <div className='container'>
-        {weather ? <WeatherBox weather={weather} /> : <p>Loading...</p>}
-        <WeatherButton cities={cities} setCity={setCity} />
-      </div>
+      {loading ?
+        <div className='container'>
+        <ClipLoader
+          color='#f88c6b'
+          loading={loading}
+          // cssOverride={override}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+      />
+        </div>
+      : (
+        <div className='container'>
+            {weather ? <WeatherBox weather={weather} /> : <p>Loading...</p>}
+            <WeatherButton cities={cities} setCity={setCity} />
+          </div>
+        )}
     </div>
   )
 }

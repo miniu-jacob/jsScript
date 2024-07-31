@@ -2,10 +2,13 @@ import React from 'react'
 
 const WeatherBox = ({weather }) => {
   console.log('weather?', weather)
+  // if (!weather || !weather.main || !weather.weather) {
+  //   return <div> Loading...</div>; // 로딩 상태 처리 
+  // }
 
   // 캘빈 온도를 변환
   // 섭씨로 변환: 캘빈 - 273.15
-  console.log('calbin temp: ', weather.main.temp)
+  console.log('temp: ', weather.main.temp)
   const celsius = weather.main.temp - 273.15;
 
   // 화씨로 변환: (캘빈 - 9/5) - 459.67
